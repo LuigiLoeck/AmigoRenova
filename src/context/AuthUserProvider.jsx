@@ -1,7 +1,5 @@
 import React, {createContext, useState} from 'react';
-import auth from '@react-native-firebase/auth';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import firestore from '@react-native-firebase/firestore';
 
 export const AuthUserContext = createContext({});
 

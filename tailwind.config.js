@@ -1,10 +1,40 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // NOTE: Update this to include the paths to all of your component files.
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./src/**/**/*.{js,jsx,ts,tsx}'],
   presets: [require('nativewind/preset')],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary-100': '#E3F2FD',
+        'primary-200': '#BBDEFB',
+        'primary-300': '#90CAF9',
+        'primary-400': '#64B5F6',
+        'primary-500': '#42A5F5',
+        'primary-600': '#2196F3',
+        'primary-700': '#1E88E5',
+        'primary-800': '#1976D2',
+        'primary-900': '#1565C0',
+        'accent-100': '#FFF9C4',
+        'accent-200': '#FFF59D',
+        'accent-300': '#FFF176',
+        'accent-400': '#FFEE58',
+        'accent-500': '#FFEB3B',
+        'accent-600': '#FDD835',
+        'accent-700': '#FBC02D',
+        'accent-800': '#F9A825',
+        'accent-900': '#F57F17',
+        'accent-secundary-100': '#E6F7E6',
+        'accent-secundary-200': '#CCEFCC',
+        'accent-secundary-300': '#B3E8B3',
+        'accent-secundary-400': '#99E099',
+        'accent-secundary-500': '#80D980',
+        'accent-secundary-600': '#66D166',
+        'accent-secundary-700': '#4DC94D',
+        'accent-secundary-800': '#33C133',
+        'accent-secundary-900': '#1AB81A',
+      },
+    },
+    plugins: [],
   },
-  plugins: [],
 };

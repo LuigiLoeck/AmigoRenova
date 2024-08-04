@@ -3,7 +3,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
-import {COLORS} from '../assets/colors';
 import {StatusBar} from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -11,7 +10,7 @@ const Stack = createNativeStackNavigator();
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor={COLORS.primary} />
+      <StatusBar className={'bg-primary-700'} />
       <Stack.Navigator
         initialRouteName="AuthStack"
         screenOptions={{
