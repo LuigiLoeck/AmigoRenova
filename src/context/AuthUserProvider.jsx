@@ -1,10 +1,12 @@
 import React, {createContext, useState} from 'react';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import {ApiContext} from './ApiProvider';
 
 export const AuthUserContext = createContext({});
 
 export const AuthUserProvider = ({children}) => {
   const [user, setUser] = useState(null);
+  const {api} = useContext(ApiContext);
 
   const storeUserCache = async (email, password) => {
     try {
@@ -26,15 +28,63 @@ export const AuthUserProvider = ({children}) => {
     }
   };
 
-  const signUp = async (user, password) => {};
+  const signUp = async user => {
+    try {
+      const response = await api.post('/api/users', user);
+      return 'ok';
+    } catch (error) {
+      console.error('Error signing up:', error);
+      return launchServerMessageErro(error);
+    }
+  };
 
-  const signIn = async (email, password) => {};
+  const signIn = async (email, password) => {
+    try {
+      const response = await api.post('/api/login', {email, password});
+      await storeUserCache(email, password);
+      if (getUser(email, password) === 'ok') {
+        return 'ok';
+      }
+    } catch (error) {
+      console.error('Error signing in:', error);
+      return launchServerMessageErro(error);
+    }
+  };
 
-  const forgotPass = async email => {};
+  const forgotPass = async email => {
+    try {
+      await api.post('/api/forgot-password', {email});
+      return 'ok';
+    } catch (error) {
+      console.error('Error recovering password:', error);
+      return launchServerMessageErro(error);
+    }
+  };
 
-  const getUser = async password => {};
+  const getUser = async (email, password) => {
+    try {
+      const response = await api.get('/api/users', {email});
+      if (response.data) {
+        response.data.password = password;
+        setUser(response.data);
+      }
+      return 'ok';
+    } catch (error) {
+      console.error('Error getting user:', error);
+      return launchServerMessageErro(error);
+    }
+  };
 
-  const signOut = async () => {};
+  const signOut = async () => {
+    try {
+      setUser(null);
+      await EncryptedStorage.removeItem('user_session');
+      return true;
+    } catch (error) {
+      console.error('Error signing out:', error);
+      return false;
+    }
+  };
 
   function launchServerMessageErro(e) {
     switch (e.code) {
