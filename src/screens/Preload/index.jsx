@@ -19,17 +19,16 @@ export default function Preload({navigation}) {
   const {getUserCache, signIn} = useContext(AuthUserContext);
 
   const loginUser = async () => {
-    // if (await getUserCache()) {
-    //   navigation.reset({
-    //     index: 0,
-    //     routes: [{name: 'AppStack'}],
-    //   });
-    // }
-    navigation.navigate('SignIn');
+    if (await getUserCache()) {
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'AppStack'}],
+      });
+    }
   };
 
   useEffect(() => {
-    loginUser();
+    //loginUser();
   }, []);
 
   const navigateToPage = page => {
@@ -84,9 +83,11 @@ export default function Preload({navigation}) {
         <View className="h-[6vh] bg-primary-500 justify-center items-center">
           <Text className="text-black">
             Ja tem uma conta?{' '}
-            <Text onPress={() => {
-              navigateToPage('SignIn');
-            }} className="text-white underline">
+            <Text
+              onPress={() => {
+                navigateToPage('SignIn');
+              }}
+              className="text-white underline">
               Faça login
             </Text>
           </Text>
