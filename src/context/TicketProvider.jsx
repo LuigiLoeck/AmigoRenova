@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useContext, useEffect} from 'react';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ApiContext} from './ApiProvider';
 
@@ -8,18 +8,18 @@ export const TicketProvider = ({children}) => {
   const [tickets, setTickets] = useState([]);
   const {api} = useContext(ApiContext);
 
-  useEffect(() => {
-    const fetchTickets = async () => {
-      try {
-        const response = await api.get('/api/tickets');
-        setTickets(response.data);
-      } catch (error) {
-        console.error('Error fetching tickets:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchTickets = async () => {
+  //     try {
+  //       const response = await api.get('/api/tickets');
+  //       setTickets(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching tickets:', error);
+  //     }
+  //   };
 
-    fetchTickets();
-  }, []);
+  //   fetchTickets();
+  // }, []);
 
   const save = async ticket => {
     try {

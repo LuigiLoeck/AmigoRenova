@@ -15,6 +15,7 @@ module.exports = {
         'primary-700': '#1E88E5',
         'primary-800': '#1976D2',
         'primary-900': '#1565C0',
+        'primary-1000': '#1083C5',
         'accent-100': '#FFF9C4',
         'accent-200': '#FFF59D',
         'accent-300': '#FFF176',

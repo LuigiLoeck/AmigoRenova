@@ -31,13 +31,26 @@ export default function Preload({navigation}) {
     //loginUser();
   }, []);
 
+  const nav = ({route, navigation}) => {
+    const {getUserCache, signIn} = useContext(AuthUserContext);
+    const {item} = route.params;
+  };
+
+  const ClientPage = () => {
+    navigation.navigate('SignUp', {userType: 'client'});
+  };
+
+  const TechPage = () => {
+    navigation.navigate('SignUp', {userType: 'tech'});
+  };
+
   const navigateToPage = page => {
     navigation.navigate(page);
   };
 
   return (
-    <SafeAreaView className="flex-1">
-      <ScrollView>
+    <SafeAreaView>
+      <ScrollView className="h-screen bg-primary-500">
         <View className="bg-primary-700 justify-between px-5 pt-5">
           <Text className="text-2xl text-black w-[80%] leading-normal tracking-wider">
             Tem o seu próprio negocio? Quer ajudar as pessoas?
@@ -45,9 +58,7 @@ export default function Preload({navigation}) {
           </Text>
           <Pressable
             className="bg-accent-secundary-700 py-3 px-5 self-end rounded-full mr-5 mt-5 hover:bg-accent-secundary-500 active:bg-accent-secundary-900"
-            onPress={() => {
-              navigateToPage('SignUp');
-            }}>
+            onPress={TechPage}>
             <Text className="text-white text-2xl font-semibold">
               Quero Ajudar
             </Text>
@@ -59,17 +70,15 @@ export default function Preload({navigation}) {
             resizeMode="contain"
           />
         </View>
-        <View className="px-5 pt-5 h-[45vh]">
+        <View className="px-5 pt-5 bg-white ">
           <Text className="text-2xl text-black leading-normal tracking-wider">
             Seus bens estão com defeito?{' '}
             <Text className="text-primary-800">Cadastre-se agora</Text> e peça
             ajuda a pessoa mais próxima!
           </Text>
           <Pressable
-            className="bg-accent-secundary-700 py-3 px-5 self-end rounded-full mr-5 mt-16 hover:bg-accent-secundary-500 active:bg-accent-secundary-900"
-            onPress={() => {
-              navigateToPage('SignUp');
-            }}>
+            className="bg-accent-secundary-700 py-3 px-5 self-end rounded-full mr-5 mt-16 mb-40 hover:bg-accent-secundary-500 active:bg-accent-secundary-900"
+            onPress={ClientPage}>
             <Text className="text-white text-2xl font-semibold">
               Preciso de ajuda
             </Text>
@@ -80,7 +89,7 @@ export default function Preload({navigation}) {
             resizeMode="contain"
           />
         </View>
-        <View className="h-[6vh] bg-primary-500 justify-center items-center">
+        <View className=" bg-primary-500 justify-center items-center h-10">
           <Text className="text-black">
             Ja tem uma conta?{' '}
             <Text

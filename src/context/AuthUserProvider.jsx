@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useContext} from 'react';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ApiContext} from './ApiProvider';
 
